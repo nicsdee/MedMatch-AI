@@ -1,4 +1,4 @@
-# ?? MedMatch AI - Intelligent Healthcare Staffing Platform 
+#  MedMatch AI - Intelligent Healthcare Staffing Platform 
  
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green)](https://fastapi.tiangolo.com/) 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/) 
@@ -10,7 +10,7 @@
 [![Vercel](https://img.shields.io/badge/Vercel-Deployed-black)](https://vercel.com) 
 [![MIT License](https://img.shields.io/badge/License-MIT-green)](LICENSE) 
  
-## ?? Table of Contents 
+##  Table of Contents 
  
 - [Live Demo](#-live-demo) 
 - [Problem Statement](#-problem-statement) 
@@ -27,7 +27,7 @@
 - [Future Enhancements](#-future-enhancements) 
 - [Author](#-author) 
  
-## ?? Live Demo 
+##  Live Demo 
  
 | Environment | URL | Status | 
 |-------------|-----|--------| 
@@ -36,22 +36,22 @@
 | **Interactive API Documentation** | https://medmatch-api.onrender.com/docs | ? Live | 
 | **GitHub Repository** | https://github.com/nicsdee/MedMatch-AI | ? Public | 
  
-## ?? About MedMatch AI 
+##  About MedMatch AI 
  
 MedMatch AI is a **production-ready, AI-powered healthcare staffing platform** that leverages Google's Gemini AI to intelligently match healthcare providers with facility shifts in real-time. This project was developed as a demonstration for the **ShiftNex AI Internship** position, showcasing my expertise in full-stack development, AI integration, database design, and cloud deployment. 
  
-### ?? Why I Built This 
+###  Why I Built This 
  
 The healthcare industry faces a critical staffing crisis. According to recent data: 
  
 - ? **82% of hospitals** report unexpected staffing shortages 
-- ?? **$4.8 billion** lost annually due to inefficient manual matching 
-- ?? **67% of facilities** still use spreadsheets for staffing 
+-  **$4.8 billion** lost annually due to inefficient manual matching 
+-  **67% of facilities** still use spreadsheets for staffing 
 - ? **3-5 hours** average time to fill an open shift manually 
  
 MedMatch AI solves these problems by reducing match time from **hours to seconds** and achieving **95% match accuracy** using AI. 
  
-## ?? Problem Statement 
+##  Problem Statement 
  
 Healthcare facilities today struggle with: 
  
@@ -69,22 +69,22 @@ MedMatch AI provides an **end-to-end intelligent matching platform** that:
  
 | Capability | How It Works | Business Value | 
 |-----------|--------------|----------------| 
-| **Instant AI Matching** | Gemini AI analyzes 10+ factors in real-time | 95%% match accuracy, <60 seconds response | 
-| **Smart Provider Profiles** | Skills, credentials, availability, ratings | 40%% reduction in screening time | 
+| **Instant AI Matching** | Gemini AI analyzes 10+ factors in real-time | 95% match accuracy, <60 seconds response | 
+| **Smart Provider Profiles** | Skills, credentials, availability, ratings | 40% reduction in screening time | 
 | **Facility Management** | Post shifts, track history, manage partnerships | Centralized operations hub | 
 | **Real-Time Dashboard** | Live metrics, analytics, and reporting | Data-driven decision making | 
-| **One-Click Matching** | Accept matches instantly | 80%% faster shift filling | 
+| **One-Click Matching** | Accept matches instantly | 80% faster shift filling | 
  
-## ?? Key Features 
+##  Key Features 
  
-### ?? AI-Powered Features 
+###  AI-Powered Features 
  
-- **Smart Matching Algorithm:** Google Gemini AI evaluates role relevance (40%%), skill overlap (40%%), and experience level (20%%) 
+- **Smart Matching Algorithm:** Google Gemini AI evaluates role relevance (40%), skill overlap (40%), and experience level (20%) 
 - **Natural Language Processing:** Understands provider bios, specialties, and shift requirements 
 - **Continuous Learning:** Match accuracy improves with every interaction 
 - **Explanation Engine:** Each match includes detailed reasoning for transparency 
  
-### ?? Management Features 
+###  Management Features 
  
 - **Provider Management:** Complete profiles, skill tracking, availability calendar, assignment history 
 - **Facility Management:** Partner hospital profiles, location mapping, active partnerships 
@@ -103,7 +103,7 @@ MedMatch AI provides an **end-to-end intelligent matching platform** that:
 - **Environment Variables** - No hardcoded secrets 
 - **CORS Configured** - Secure cross-origin requests 
  
-## ??? Technology Stack 
+## ? Technology Stack 
  
 ### Frontend Architecture 
  
@@ -141,58 +141,65 @@ MedMatch AI provides an **end-to-end intelligent matching platform** that:
 | Vercel | Frontend hosting | Free (100GB bandwidth) | 
 | Neon.tech | PostgreSQL database | Free (1GB storage) | 
  
-## ??? Architecture 
+## ? Architecture 
  
 ``` 
-ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
-³                         Client Browser                          ³ 
-ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
-                                   ³ 
-                                    
-ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
-³                    Vercel (Frontend Hosting)                    ³ 
-³                   Next.js 14 + TypeScript                       ³ 
-ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
-                                   ³ 
-                                    
-ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
-³                     Render (Backend Hosting)                    ³ 
-³                      FastAPI + Python 3.10                      ³ 
-ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
-                                   ³ 
-                     ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
-                                                
-ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
-³     PostgreSQL DB        ³ ³   Google Gemini AI API   ³ ³    REST API Endpoints     ³ 
-³     Neon.tech Hosting    ³ ³    Intelligent Matching  ³ ³    Providers/Facilities   ³ 
-ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+-------------------------------------------------------------------------
+                              Client Browser                           
+                                   |
+                                   |
+                                   |
+                                   v 
+ 
+ 
+                        Vercel (Frontend Hosting)                     
+                         Next.js 14 + TypeScript                        
+ 
+                                   |
+                                   |
+                                   |
+                                   v
+                                   
+ 
+                         Render (Backend Hosting)                     
+                          FastAPI + Python 3.10                       
+                                  
+                                   |
+                                   |
+                                   |
+                                   v
+                                    
+   
+     PostgreSQL DB         Google Gemini AI API        REST API Endpoints      
+     Neon.tech Hosting     Intelligent Matching       Providers/Facilities    
+ ------------------------------------------------------------------------------
 ``` 
  
-## ?? AI Matching Algorithm 
+##  AI Matching Algorithm 
  
 ### How It Works 
  
 ``` 
 Step 1: Facility posts a shift with required role, skills, and urgency 
-                                   ³ 
+                                    
                                     
 Step 2: System queries all available providers from database 
-                                   ³ 
+                                    
                                     
 Step 3: For each provider, Gemini AI analyzes: 
-        - Role relevance (40%% weight) 
-        - Skill overlap (40%% weight)  
-        - Experience level (20%% weight) 
-                                   ³ 
+        - Role relevance (40% weight) 
+        - Skill overlap (40% weight)  
+        - Experience level (20% weight) 
+                                    
                                     
 Step 4: Match scores calculated (0-100 range) 
-                                   ³ 
+                                    
                                     
 Step 5: Top 5 matches returned with explanations 
-                                   ³ 
+                                    
                                     
 Step 6: Facility reviews and accepts best match 
-                                   ³ 
+                                    
                                     
 Step 7: Provider assigned, shift marked as filled 
 ``` 
@@ -207,7 +214,7 @@ The system uses carefully crafted prompts that:
 - **Evaluate availability** (Active, Available, On-Call) 
 - **Provide match scores** with clear reasoning 
  
-## ?? API Endpoints 
+##  API Endpoints 
  
 | Method | Endpoint | Description | Request Body | Response | 
 |--------|----------|-------------|--------------|----------| 
@@ -219,7 +226,7 @@ The system uses carefully crafted prompts that:
 | POST | `/match/{shift_id}` | AI-powered matching | None | Array of match results | 
 | PUT | `/matches/{match_id}/accept` | Accept a match | None | Success message | 
  
-## ??? Database Schema 
+## ? Database Schema 
  
 ```sql 
 -- Providers Table 
@@ -267,7 +274,7 @@ CREATE TABLE matches (
 ); 
 ``` 
  
-## ?? Getting Started 
+##  Getting Started 
  
 ### Prerequisites 
  
@@ -297,7 +304,7 @@ npm install
 npm run dev 
 ``` 
  
-## ?? Deployment 
+##  Deployment 
  
 ### Backend Deployment (Render) 
  
@@ -314,7 +321,7 @@ npm run dev
 3. Add environment variable: NEXT_PUBLIC_API_URL 
 4. Automatic deployment on push 
  
-## ?? Testing 
+##  Testing 
  
 ### API Testing with Curl 
  
@@ -329,7 +336,7 @@ curl https://medmatch-api.onrender.com/providers
 curl -X POST https://medmatch-api.onrender.com/match/1 
 ``` 
  
-## ?? Future Enhancements 
+##  Future Enhancements 
  
 - [ ] Real-time WebSocket notifications 
 - [ ] Provider rating and review system 
@@ -341,7 +348,7 @@ curl -X POST https://medmatch-api.onrender.com/match/1
 - [ ] Multi-language support 
 - [ ] Shift bidding system 
  
-## ?? Project Metrics 
+##  Project Metrics 
  
 | Metric | Value | 
 |--------|-------| 
@@ -350,10 +357,10 @@ curl -X POST https://medmatch-api.onrender.com/match/1
 | Database Tables | 4 | 
 | React Components | 15+ | 
 | Development Time | 40+ hours | 
-| Match Accuracy | 85-95%% | 
+| Match Accuracy | 85-95% | 
 | Response Time | <60 seconds | 
  
-## ?? What This Project Demonstrates 
+##  What This Project Demonstrates 
  
 | Skill | Evidence | 
 |-------|----------| 
@@ -368,7 +375,7 @@ curl -X POST https://medmatch-api.onrender.com/match/1
 | Problem Solving | Healthcare staffing crisis | 
 | Documentation | Comprehensive README | 
  
-## ????? Author 
+## ? Author 
  
 **Nicholas Kioko** 
  
@@ -378,7 +385,7 @@ curl -X POST https://medmatch-api.onrender.com/match/1
 - **Portfolio:** Available upon request 
 - **Location:** Nairobi, Kenya 
  
-## ?? Why I Should Join ShiftNex AI 
+##  Why I Should Join ShiftNex AI 
  
 1. **Proven Technical Skills** - This project demonstrates my ability to build production-ready AI applications from scratch 
  
@@ -394,11 +401,11 @@ curl -X POST https://medmatch-api.onrender.com/match/1
  
 7. **Documentation Focus** - Believe in clear, comprehensive documentation 
  
-## ?? License 
+##  License 
  
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
  
-## ?? Acknowledgments 
+##  Acknowledgments 
  
 - **ShiftNex AI** - For the inspiration and this opportunity 
 - **Google Gemini** - For providing the AI matching capabilities 
