@@ -1,4 +1,4 @@
-#  MedMatch AI - Intelligent Healthcare Staffing Platform 
+#  MedMatchAI - Instant Intelligent Healthcare Staffing System 
  
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green)](https://fastapi.tiangolo.com/) 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/) 
@@ -31,10 +31,10 @@
  
 | Environment | URL | Status | 
 |-------------|-----|--------| 
-| **Frontend Application** | https://medmatch-ai.vercel.app | ? Live | 
-| **Backend API** | https://medmatch-api.onrender.com | ? Live | 
-| **Interactive API Documentation** | https://medmatch-api.onrender.com/docs | ? Live | 
-| **GitHub Repository** | https://github.com/nicsdee/MedMatch-AI | ? Public | 
+| **Frontend Application** | https://medmatch-ai.vercel.app |  Live | 
+| **Backend API** | https://medmatch-api.onrender.com |  Live | 
+| **Interactive API Documentation** | https://medmatch-api.onrender.com/docs |  Live | 
+| **GitHub Repository** | https://github.com/nicsdee/MedMatch-AI |  Public | 
  
 ##  About MedMatch AI 
  
@@ -44,10 +44,10 @@ MedMatch AI is a **production-ready, AI-powered healthcare staffing platform** t
  
 The healthcare industry faces a critical staffing crisis. According to recent data: 
  
-- ? **82% of hospitals** report unexpected staffing shortages 
+-  **82% of hospitals** report unexpected staffing shortages 
 -  **$4.8 billion** lost annually due to inefficient manual matching 
 -  **67% of facilities** still use spreadsheets for staffing 
-- ? **3-5 hours** average time to fill an open shift manually 
+-  **3-5 hours** average time to fill an open shift manually 
  
 MedMatch AI solves these problems by reducing match time from **hours to seconds** and achieving **95% match accuracy** using AI. 
  
@@ -63,7 +63,7 @@ Healthcare facilities today struggle with:
 | Agency middlemen fees | 30-50% markup on provider rates | $10,000+ monthly for large facilities | 
 | Outdated technology | Spreadsheets and manual tracking | 15-20 hours of admin work weekly | 
  
-## ? Solution 
+##  Solution 
  
 MedMatch AI provides an **end-to-end intelligent matching platform** that: 
  
@@ -103,7 +103,7 @@ MedMatch AI provides an **end-to-end intelligent matching platform** that:
 - **Environment Variables** - No hardcoded secrets 
 - **CORS Configured** - Secure cross-origin requests 
  
-## ? Technology Stack 
+##  Technology Stack 
  
 ### Frontend Architecture 
  
@@ -141,7 +141,7 @@ MedMatch AI provides an **end-to-end intelligent matching platform** that:
 | Vercel | Frontend hosting | Free (100GB bandwidth) | 
 | Neon.tech | PostgreSQL database | Free (1GB storage) | 
  
-## ? Architecture 
+##  Architecture 
  
 ``` 
 -------------------------------------------------------------------------
@@ -182,25 +182,23 @@ MedMatch AI provides an **end-to-end intelligent matching platform** that:
 ``` 
 Step 1: Facility posts a shift with required role, skills, and urgency 
                                     
-                                    
+                                   
 Step 2: System queries all available providers from database 
                                     
-                                    
+                                   
 Step 3: For each provider, Gemini AI analyzes: 
         - Role relevance (40% weight) 
         - Skill overlap (40% weight)  
         - Experience level (20% weight) 
-                                    
-                                    
+                                                                  
 Step 4: Match scores calculated (0-100 range) 
                                     
-                                    
+
 Step 5: Top 5 matches returned with explanations 
                                     
-                                    
+
 Step 6: Facility reviews and accepts best match 
-                                    
-                                    
+
 Step 7: Provider assigned, shift marked as filled 
 ``` 
  
@@ -226,7 +224,7 @@ The system uses carefully crafted prompts that:
 | POST | `/match/{shift_id}` | AI-powered matching | None | Array of match results | 
 | PUT | `/matches/{match_id}/accept` | Accept a match | None | Success message | 
  
-## ? Database Schema 
+##  Database Schema 
  
 ```sql 
 -- Providers Table 
@@ -375,7 +373,7 @@ curl -X POST https://medmatch-api.onrender.com/match/1
 | Problem Solving | Healthcare staffing crisis | 
 | Documentation | Comprehensive README | 
  
-## ? Author 
+##  Author 
  
 **Nicholas Kioko** 
  
