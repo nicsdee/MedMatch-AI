@@ -1,97 +1,255 @@
-# MedMatch AI - Custom Proprietary License 
- 
-## Copyright (c) 2026 Nicholas Kioko (nicsdee) 
- 
-## All Rights Reserved. 
- 
---- 
- 
-## 1. Ownership and Copyright 
- 
-This software, including all source code, documentation, designs, and associated files ("MedMatch AI" or "the Software"), is the exclusive property of **Nicholas Kioko**. 
- 
-The Software is protected by copyright laws and international copyright treaties. 
- 
-## 2. Permitted Uses (No Permission Needed) 
- 
-- Personal learning and education 
-- Forking for personal use 
-- Submitting pull requests and improvements 
-- Showcasing in portfolio with credit to original work 
- 
-## 3. Restricted Uses (Written Permission Required) 
- 
-The following require explicit written consent from Nicholas Kioko (nicsdavid@gmail.com): 
- 
-- Commercial use or selling the Software 
-- Distribution of modified versions 
-- Using for company internal purposes 
-- Offering as SaaS or paid API 
-- Reselling access to the Software 
- 
-## 4. Prohibited Uses (Never Allowed) 
- 
-- Removing copyright notices 
-- Claiming ownership of the Software 
-- Using for illegal or malicious purposes 
-- Reverse engineering core algorithms 
- 
-## 5. Commercial Licensing 
- 
-To use MedMatch AI commercially, you must: 
- 
-1. Email nicsdavid@gmail.com 
-2. Request a commercial license 
-3. Negotiate terms (one-time fee or revenue share) 
-4. Sign a written agreement 
- 
-Without a signed commercial license, all commercial use is prohibited. 
- 
-## 6. No Warranty 
- 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. 
- 
-## 7. Liability Limitation 
- 
-In no event shall Nicholas Kioko be liable for any damages arising from use of the Software. 
- 
-## 8. Termination 
- 
-This license terminates automatically if you violate any terms. Upon termination, you must cease all use and destroy all copies. 
- 
-## 9. Enforcement 
- 
-Any violation will result in: 
-- Immediate revocation of rights 
-- Legal action to protect intellectual property 
-- Claims for damages and legal fees 
- 
-## 10. Contact Information 
- 
-**Nicholas Kioko (nicsdee)** 
-- Email: nicsdavid@gmail.com 
-- GitHub: https://github.com/nicsdee 
-- Phone/WhatsApp: +254 727 939 626 
- 
---- 
- 
-## Summary 
- 
-| Use Case | Permission Required | 
-|----------|---------------------| 
-| Personal learning | No - Free | 
-| Portfolio showcase | No - Free | 
-| Forking for personal use | No - Free | 
-| Submitting improvements | No - Free | 
-| Selling the Software | Yes - Written agreement | 
-| Commercial SaaS | Yes - Written agreement | 
-| Company internal use | Yes - Written agreement | 
-| Claiming as your own | Never allowed | 
- 
---- 
- 
-**By using MedMatch AI, you agree to these terms.** 
- 
-*Last Updated: May 2026* 
-*Author: Nicholas Kioko (nicsdee)* 
-*WhatsApp/Tel: +254 727 939 626
+# 📜 MedMatch AI - Custom Proprietary License
+
+**Copyright © 2026 Nicholas Kioko (nicsdee)**
+
+**All Rights Reserved.**
+
+---
+
+## 📋 License Overview
+
+| Aspect | Detail |
+|--------|--------|
+| **Owner** | Nicholas Kioko (nicsdee) |
+| **Software** | MedMatch AI Platform |
+| **License Type** | Custom Proprietary |
+| **Commercial Use** | Written Permission Required |
+| **Last Updated** | May 2026 |
+
+---
+
+## 1️⃣ Ownership & Copyright
+
+This software, including all source code, documentation, designs, algorithms, and associated files ("**MedMatch AI**" or "**the Software**"), is the **exclusive intellectual property** of **Nicholas Kioko**.
+
+The Software is protected under:
+- Copyright laws
+- International copyright treaties
+- Intellectual property laws
+
+**No ownership rights are transferred under this license.**
+
+---
+
+## 2️⃣ What You CAN Do (No Permission Needed)
+
+| Use Case | Allowed? |
+|----------|----------|
+| Personal learning and education | ✅ **YES** |
+| Studying the code for knowledge | ✅ **YES** |
+| Forking for personal use on GitHub | ✅ **YES** |
+| Submitting pull requests and improvements | ✅ **YES** |
+| Showcasing in your portfolio (with credit to original) | ✅ **YES** |
+| Using as a reference for your own projects | ✅ **YES** |
+
+---
+
+## 3️⃣ What You CANNOT Do (Written Permission Required)
+
+The following uses require **explicit written permission** from Nicholas Kioko via `nicsdavid@gmail.com`:
+
+| Restricted Use | Why |
+|----------------|-----|
+| ❌ **Selling the Software** | Commercial exploitation |
+| ❌ **Commercial SaaS hosting** | Making money from my work |
+| ❌ **Company internal use** | Corporate benefit without payment |
+| ❌ **Reselling access** | Unauthorized distribution |
+| ❌ **Distributing modified versions** | Losing control of quality |
+| ❌ **Paid API services** | Competing commercially |
+
+---
+
+## 4️⃣ What You Can NEVER Do
+
+| Prohibited Act | Consequence |
+|----------------|-------------|
+| 🚫 Removing copyright notices | License termination |
+| 🚫 Claiming you built MedMatch AI | Legal action |
+| 🚫 Using for illegal purposes | Legal prosecution |
+| 🚫 Reverse engineering algorithms | Damages claim |
+| 🚫 Trademark infringement | Lawsuit |
+
+---
+
+## 5️⃣ Commercial Licensing
+
+If you want to use MedMatch AI commercially, follow this process:
+
+### Step 1: Contact
+Email `nicsdavid@gmail.com` with:
+- Your company name
+- Intended use case
+- Number of users
+- Expected revenue (if applicable)
+
+### Step 2: Negotiate
+We will discuss licensing terms:
+- **Option A:** One-time license fee (negotiable)
+- **Option B:** Revenue sharing (5-15% based on use)
+- **Option C:** Monthly subscription fee
+- **Option D:** Custom enterprise agreement
+
+### Step 3: Sign
+Both parties sign a formal licensing agreement
+
+### Step 4: Deploy
+You receive written permission to use commercially
+
+> **⚠️ IMPORTANT:** Without a signed commercial license agreement, all commercial use is strictly prohibited and will result in legal action.
+
+---
+
+## 6️⃣ Modification Terms
+
+You may modify the Software for **personal use only** under these conditions:
+
+| Requirement | Detail |
+|-------------|--------|
+| Must include this license | ✅ Required |
+| Must state modifications were made | ✅ Required |
+| Cannot distribute modified versions | ❌ Prohibited |
+| Cannot use modified versions commercially | ❌ Prohibited |
+
+---
+
+## 7️⃣ Forking & Contributions
+
+### Forking Policy
+
+| Action | Allowed? |
+|--------|----------|
+| Fork on GitHub | ✅ Yes |
+| Keep fork private | ✅ Yes |
+| Delete fork | ✅ Yes |
+| Make fork public | ⚠️ Must credit original |
+| Use fork commercially | ❌ No (needs permission) |
+
+### Contributions
+
+By submitting code via pull requests, you agree that:
+
+- ✅ Your contributions become property of Nicholas Kioko
+- ✅ You grant an irrevocable license for your code
+- ✅ You waive any rights to claim ownership
+- ✅ You certify you have rights to contribute the code
+
+---
+
+## 8️⃣ No Warranty
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+NON-INFRINGEMENT.
+
+
+
+---
+
+## 9️⃣ Liability Limitation
+
+**To the maximum extent permitted by law:**
+
+| Damage Type | Liability |
+|-------------|-----------|
+| Direct damages | Limited to $100 |
+| Indirect damages | Zero liability |
+| Lost profits | Zero liability |
+| Data loss | Zero liability |
+| Business interruption | Zero liability |
+
+---
+
+## 🔟 Termination
+
+This license is **effective until terminated** by either party.
+
+**Automatic termination occurs if you:**
+- Violate any term of this license
+- Attempt to sell or commercially use without permission
+- Remove copyright notices
+
+**Upon termination:**
+1. All rights granted immediately cease
+2. You must stop all use of the Software
+3. You must delete/destroy all copies
+4. No refunds or compensation
+
+---
+
+## ⚖️ Enforcement
+
+Any violation will result in:
+
+| Consequence | Detail |
+|-------------|--------|
+| **Immediate revocation** | All usage rights terminated |
+| **Legal action** | Lawsuit for damages |
+| **Financial damages** | Lost revenue + legal fees |
+| **Injunction** | Court order to stop using |
+| **Public notice** | Violation made public |
+
+---
+
+## 📞 Contact Information
+
+For permissions, commercial licenses, or questions:
+
+### Nicholas Kioko (nicsdee)
+
+| Method | Contact |
+|--------|---------|
+| **Email** | nicsdavid@gmail.com |
+| **GitHub** | https://github.com/nicsdee |
+| **Phone/WhatsApp** | +254 727 939 626 |
+| **Location** | Nairobi, Kenya |
+
+---
+
+## 📊 Quick Summary Table
+
+| Use Case | Permission | Contact Needed |
+|----------|------------|----------------|
+| 📚 Personal learning | ✅ Free | No |
+| 🎓 University project | ✅ Free | No |
+| 💼 Portfolio showcase | ✅ Free | No |
+| 🔧 Fork for personal use | ✅ Free | No |
+| 📝 Submit improvements | ✅ Free | No |
+| 💰 **Sell the Software** | ❌ Paid license | Yes - Email |
+| 🏢 **Company internal use** | ❌ Paid license | Yes - Email |
+| ☁️ **Commercial SaaS** | ❌ Paid license | Yes - Email |
+| 🔌 **Paid API service** | ❌ Paid license | Yes - Email |
+| 🚫 **Claim as your own** | ❌ NEVER | No - Illegal |
+
+---
+
+## ✅ Acceptance
+
+**By using, forking, cloning, or downloading MedMatch AI, you acknowledge that:**
+
+1. You have read and understood this license
+2. You agree to be bound by its terms
+3. You understand violations have legal consequences
+
+---
+
+## 📅 License Information
+
+| Field | Value |
+|-------|-------|
+| **License Version** | 1.0 |
+| **Effective Date** | May 1, 2026 |
+| **Last Modified** | May 2026 |
+| **Jurisdiction** | Kenya / International |
+| **Author** | Nicholas Kioko (nicsdee) |
+
+---
+
+<div align="center">
+
+**Built with ☕ and 🧠 | All Rights Reserved | © 2026 Nicholas Kioko**
+
+**Questions? Email: nicsdavid@gmail.com**
+
+</div>
