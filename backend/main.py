@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# ============ DATABASE SETUP (SAFE) ============
+# ============ DATABASE SETUP ============
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
@@ -20,7 +20,7 @@ if not DATABASE_URL:
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"sslmode": "require"}  # Required for cloud databases like Neon
+    connect_args={"sslmode": "require"}
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -32,7 +32,7 @@ class Provider(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
     role = Column(String(100), nullable=False)
-    skills = Column(JSON)  # ✅ Changed from ARRAY to JSON
+    skills = Column(JSON)
     license_number = Column(String(100))
     license_valid = Column(Boolean, default=True)
     available = Column(Boolean, default=True)
@@ -52,7 +52,7 @@ class Shift(Base):
     facility_id = Column(Integer, nullable=False)
     role = Column(String(100), nullable=False)
     shift_date = Column(Date, nullable=False)
-    required_skills = Column(JSON)  # ✅ Changed from ARRAY to JSON
+    required_skills = Column(JSON)
     urgency = Column(String(50), default="medium")
     description = Column(Text)
     status = Column(String(50), default="open")
@@ -65,12 +65,6 @@ class Match(Base):
     match_score = Column(Float)
     match_reason = Column(Text)
     status = Column(String(50), default="pending")
-
-# ============ CREATE TABLES ON STARTUP ============
-@app.on_event("startup")
-def startup():
-    Base.metadata.create_all(bind=engine)
-    print("✅ Database connected and tables created")
 
 # ============ PYDANTIC SCHEMAS ============
 
@@ -96,6 +90,7 @@ def get_db():
 app = FastAPI(title="MedMatch AI", description="Healthcare Provider-Facility Matching for ShiftNex")
 
 # ============ CORS MIDDLEWARE ============
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -108,6 +103,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ============ CREATE TABLES ON STARTUP (MOVED HERE - AFTER app IS CREATED) ============
+
+@app.on_event("startup")
+def startup():
+    Base.metadata.create_all(bind=engine)
+    print("✅ Database connected and tables created")
 
 # ============ ENDPOINTS ============
 
@@ -122,10 +124,6 @@ def root():
 @app.get("/providers")
 def get_providers(db: Session = Depends(get_db)):
     providers = db.query(Provider).all()
-    # Convert JSON skills back to list for response
-    for p in providers:
-        if p.skills and isinstance(p.skills, list):
-            pass
     return providers
 
 @app.get("/providers/available/{role}")
@@ -203,6 +201,7 @@ def get_matched_shifts(db: Session = Depends(get_db)):
     return result
 
 # ============ INTELLIGENT MATCHING ============
+
 @app.post("/match/{shift_id}")
 def match_providers(shift_id: int, db: Session = Depends(get_db)):
     """Match providers using intelligent scoring - Professional explanations"""
@@ -223,13 +222,11 @@ def match_providers(shift_id: int, db: Session = Depends(get_db)):
         }
     
     required_skills = set([skill.lower() for skill in (shift.required_skills or [])])
-    
     matches = []
     
     for provider in providers:
         provider_skills = set([skill.lower() for skill in (provider.skills or [])])
         
-        # Calculate match percentage
         if required_skills:
             matched_skills = required_skills.intersection(provider_skills)
             match_percent = int(len(matched_skills) / len(required_skills) * 100) if required_skills else 50
@@ -237,16 +234,13 @@ def match_providers(shift_id: int, db: Session = Depends(get_db)):
             match_percent = 50
             matched_skills = set()
         
-        # Role bonus
         if provider.role == shift.role:
             match_percent = min(95, match_percent + 25)
         elif any(word in provider.role.lower() for word in shift.role.lower().split()):
             match_percent = min(95, match_percent + 15)
         
-        # ✅ Fixed: Handle None experience
         exp = provider.experience_years or 0
         
-        # Experience bonus
         if exp >= 10:
             match_percent = min(98, match_percent + 15)
             exp_text = "extensive"
@@ -259,7 +253,6 @@ def match_providers(shift_id: int, db: Session = Depends(get_db)):
         else:
             exp_text = "emerging"
         
-        # Generate professional explanation
         if match_percent >= 85:
             quality = "Exceptional"
             recommendation = "This provider would be an outstanding addition to your team."
@@ -276,7 +269,6 @@ def match_providers(shift_id: int, db: Session = Depends(get_db)):
             quality = "Potential"
             recommendation = "May be suitable if no other options are available."
         
-        # Build explanation
         reason = f"{quality} match: {provider.name} brings {exp_text} {exp}+ years of experience as {provider.role}. "
         
         if matched_skills:
@@ -297,7 +289,6 @@ def match_providers(shift_id: int, db: Session = Depends(get_db)):
             "experience_years": exp
         })
         
-        # Save to database
         new_match = Match(
             shift_id=shift_id,
             provider_id=provider.id,
@@ -307,10 +298,8 @@ def match_providers(shift_id: int, db: Session = Depends(get_db)):
         )
         db.add(new_match)
     
-    # Sort by score (highest first)
     matches.sort(key=lambda x: x["score"], reverse=True)
     top_matches = matches[:5]
-    
     db.commit()
     
     return {
@@ -320,7 +309,6 @@ def match_providers(shift_id: int, db: Session = Depends(get_db)):
         "total_matches": len(matches),
         "message": f"✅ Found {len(matches)} matches for this shift"
     }
-
 
 @app.get("/matches/{shift_id}")
 def get_matches(shift_id: int, db: Session = Depends(get_db)):
