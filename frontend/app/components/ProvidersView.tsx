@@ -41,7 +41,8 @@ export default function ProvidersView({ providers }: any) {
   };
 
   // ✅ FIXED: Added type assertion and filter to ensure string[] type
-  const uniqueRoles: string[] = [...new Set(providers.map((p: any) => p.role).filter(Boolean))];
+  //const uniqueRoles: string[] = [...new Set(providers.map((p: any) => p.role).filter(Boolean))];
+  const uniqueRoles = [...new Set(providers.map((p: any) => p.role).filter(Boolean))] as string[];
 
   const filteredProviders = providers.filter((p: any) => {
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
