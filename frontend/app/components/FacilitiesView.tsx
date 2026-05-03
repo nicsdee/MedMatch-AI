@@ -10,7 +10,7 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
   const [showModal, setShowModal] = useState(false);
 
   // Get unique regions for filter
-  const uniqueRegions = [...new Set(facilities.map((f: any) => f.location).filter(Boolean))];
+  const uniqueRegions: string[] = [...new Set(facilities.map((f: any) => f.location).filter(Boolean))];
 
   const filteredFacilities = facilities.filter((f: any) => {
     const matchesSearch = f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -116,7 +116,8 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
             className="px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-sm min-w-[130px]"
           >
             <option value="">All Regions</option>
-            {uniqueRegions.map((region: string) => (
+            {/* ✅ FIXED: Removed the explicit type annotation - TypeScript now infers correctly */}
+            {uniqueRegions.map((region) => (
               <option key={region} value={region}>{region}</option>
             ))}
           </select>
