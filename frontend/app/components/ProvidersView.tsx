@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Search, ChevronDown, ChevronUp, Users, Star, Mail, Award, Calendar, Clock, X, CheckCircle, Briefcase } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export default function ProvidersView({ providers }: any) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,7 +40,8 @@ export default function ProvidersView({ providers }: any) {
     }
   };
 
-  const uniqueRoles = [...new Set(providers.map((p: any) => p.role))];
+  // ✅ FIXED: Added type assertion and filter to ensure string[] type
+  const uniqueRoles: string[] = [...new Set(providers.map((p: any) => p.role).filter(Boolean))];
 
   const filteredProviders = providers.filter((p: any) => {
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -166,7 +167,8 @@ export default function ProvidersView({ providers }: any) {
           className="px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-sm min-w-[150px]"
         >
           <option value="">All Roles</option>
-          {uniqueRoles.map((role: string) => (
+          {/* ✅ FIXED: Removed explicit string type annotation */}
+          {uniqueRoles.map((role) => (
             <option key={role} value={role}>{role}</option>
           ))}
         </select>
