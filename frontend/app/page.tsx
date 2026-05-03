@@ -13,7 +13,7 @@ import PostShiftModal from './components/PostShiftModal';
 import MatchModal from './components/MatchModal';
 import TableModal from './components/TableModal';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -25,7 +25,7 @@ export default function Home() {
   const [showShiftModal, setShowShiftModal] = useState(false);
   const [showMatchModal, setShowMatchModal] = useState(false);
   const [showTableModal, setShowTableModal] = useState<{type: string; title: string} | null>(null);
-  const [selectedShift, setSelectedShift] = useState(null);
+  const [selectedShift, setSelectedShift] = useState<any>(null);
   const [matches, setMatches] = useState([]);
 
   useEffect(() => {
@@ -64,9 +64,11 @@ export default function Home() {
   const handleAcceptMatch = async (providerId: number) => {
     if (!selectedShift) return;
     try {
+      // ✅ FIXED: Use correct template literal syntax (single curly braces)
       const matchesResponse = await axios.get(`${API_URL}/matches/${selectedShift.id}`);
       const match = matchesResponse.data.find((m: any) => m.provider_id === providerId);
       if (match) {
+        // ✅ FIXED: Use correct template literal syntax
         await axios.put(`${API_URL}/matches/${match.id}/accept`);
         alert('✓ Provider assigned successfully');
         setShowMatchModal(false);
