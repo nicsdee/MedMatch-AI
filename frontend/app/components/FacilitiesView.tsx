@@ -10,7 +10,9 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
   const [showModal, setShowModal] = useState(false);
 
   // Get unique regions for filter
-  const uniqueRegions: string[] = [...new Set(facilities.map((f: any) => f.location).filter(Boolean))];
+
+    // Get unique regions for filter
+  const uniqueRegions = [...new Set(facilities.map((f: any) => f.location).filter(Boolean))] as string[];
 
   const filteredFacilities = facilities.filter((f: any) => {
     const matchesSearch = f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
