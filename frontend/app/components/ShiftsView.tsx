@@ -125,7 +125,8 @@ export default function ShiftsView({ shifts, facilities, onMatch, onShiftPosted,
     shift.role.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const uniqueRoles = [...new Set(localShifts.map((s: any) => s.role))];
+  //const uniqueRoles = [...new Set(localShifts.map((s: any) => s.role))];
+  const uniqueRoles: string[] = [...new Set(localShifts.map((s: any) => s.role).filter(Boolean))] as string[];
 
   const totalShifts = localShifts.length;
   const highUrgency = localShifts.filter((s: any) => s.urgency === 'high').length;
@@ -448,7 +449,7 @@ export default function ShiftsView({ shifts, facilities, onMatch, onShiftPosted,
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 bg-white text-gray-700 transition"
                   >
                     <option value="">Select a role</option>
-                    {uniqueRoles.map((role: string) => (<option key={role} value={role}>{role}</option>))}
+                    {uniqueRoles.map((role) => (<option key={role} value={role}>{role}</option>))}
                     <option value="Other">Other (specify in description)</option>
                   </select>
                 </div>
