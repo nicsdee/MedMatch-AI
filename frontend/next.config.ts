@@ -5,10 +5,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // ✅ This is the CORRECT way for Next.js 16
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // Do NOT include any 'eslint' key here - it's no longer supported
 };
 
 export default nextConfig;
