@@ -74,16 +74,11 @@ export default function Dashboard({ providers, facilities, shifts, setActiveView
   <div className="flex flex-col gap-4">
     {/* AI Matching Description - Moved to Top */}
     <div className="text-center">
-      <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-emerald-100 rounded-full border border-emerald-300 shadow-sm mb-3 sm:mb-4">
-        <Brain className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-emerald-700" />
-        <span className="text-[10px] sm:text-xs md:text-sm font-mono text-emerald-800 font-bold tracking-wider">AI MATCHING ENGINE</span>
-      </div>
+      
       <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 px-2">
         Instant Intelligent Provider -to- Facility Matching
       </h2>
-      <p className="text-sm sm:text-base text-slate-600 mt-1 sm:mt-2 max-w-2xl mx-auto font-medium px-3">
-        Neural network connecting healthcare facilities with qualified providers in real-time
-      </p>
+     
     </div>
 
     {/* Stats and Badges Row */}
@@ -309,9 +304,7 @@ export default function Dashboard({ providers, facilities, shifts, setActiveView
                   <Brain className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-emerald-700" />
                   <span className="text-[10px] sm:text-xs md:text-sm font-mono text-emerald-800 font-bold tracking-wider">AI MATCHING ENGINE</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 px-2">
-                  Instant Intelligent Provider -to- Facility Matching
-                </h2>
+               
                 <p className="text-sm sm:text-base text-slate-600 mt-1 sm:mt-2 max-w-2xl mx-auto font-medium px-3">
                   Neural network connecting healthcare facilities with qualified providers in real-time
                 </p>
