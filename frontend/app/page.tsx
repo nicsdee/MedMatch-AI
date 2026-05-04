@@ -28,12 +28,26 @@ export default function Home() {
   const [selectedShift, setSelectedShift] = useState<any>(null);
   const [matches, setMatches] = useState([]);
 
+  // Check screen size on mount and resize
+  useEffect(() => {
+    const checkScreenSize = () => {
+      if (window.innerWidth < 768) {
+        setSidebarOpen(false);
+      } else {
+        setSidebarOpen(true);
+      }
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    // 🔍 DEBUG: Log what URL is being used
     console.log('🔍 API_URL being used:', API_URL);
     
     try {
@@ -114,11 +128,14 @@ export default function Home() {
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       <Sidebar 
         sidebarOpen={sidebarOpen} 
+        setSidebarOpen={setSidebarOpen}
         activeView={activeView} 
-        setActiveView={setActiveView} 
+        setActiveView={setActiveView}
+        setShowPostShiftModal={setShowShiftModal}
       />
       
-      <div className="flex-1 flex flex-col overflow-hidden">
+      {/* Main Content Area - with responsive margin/padding */}
+      <div className="flex-1 flex flex-col overflow-hidden w-full">
         <Navbar 
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
@@ -126,7 +143,8 @@ export default function Home() {
           shiftsCount={shifts.length}
         />
         
-        <div className="flex-1 overflow-y-auto">
+        {/* Page Content - responsive padding */}
+        <main className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
           {activeView === 'dashboard' && (
             <Dashboard 
               providers={providers} 
@@ -146,18 +164,21 @@ export default function Home() {
               onShiftAccepted={handleShiftAccepted}
             />
           )}
+          
           {activeView === 'matched' && (
             <MatchedShiftsView 
               facilities={facilities}
               shifts={shifts}
             />
           )}
+          
           {activeView === 'providers' && <ProvidersView providers={providers} />}
+          
           {activeView === 'facilities' && <FacilitiesView facilities={facilities} shifts={shifts} />}
-
-        </div>
+        </main>
       </div>
 
+      {/* Modals - responsive */}
       {showShiftModal && (
         <PostShiftModal 
           facilities={facilities} 

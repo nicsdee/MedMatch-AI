@@ -10,8 +10,6 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
   const [showModal, setShowModal] = useState(false);
 
   // Get unique regions for filter
-
-    // Get unique regions for filter
   const uniqueRegions = [...new Set(facilities.map((f: any) => f.location).filter(Boolean))] as string[];
 
   const filteredFacilities = facilities.filter((f: any) => {
@@ -51,63 +49,63 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
     return (
       <div className="flex items-center gap-0.5">
         {[...Array(fullStars)].map((_, i) => (
-          <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
+          <Star key={i} className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-400 fill-amber-400" />
         ))}
         {hasHalfStar && (
-          <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+          <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-400 fill-amber-400" />
         )}
         {[...Array(emptyStars)].map((_, i) => (
-          <Star key={i} className="w-3 h-3 text-gray-300" />
+          <Star key={i} className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gray-300" />
         ))}
       </div>
     );
   };
 
   return (
-    <div className="p-4 sm:p-6 md:p-8">
+    <div className="p-3 sm:p-4 md:p-6 lg:p-8">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-5 md:mb-6">
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-600 rounded-full"></div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-800">Partner Facilities</h1>
+          <div className="w-1 h-6 sm:h-7 md:h-8 bg-gradient-to-b from-emerald-500 to-teal-600 rounded-full"></div>
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">Partner Facilities</h1>
         </div>
-        <p className="text-gray-500 text-sm">Healthcare facilities in our network</p>
+        <p className="text-xs sm:text-sm text-gray-500">Healthcare facilities in our network</p>
       </div>
 
-      {/* Stats Overview */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-        <div className="bg-white rounded-xl border border-gray-100 p-3 text-center shadow-sm">
-          <Building2 className="w-5 h-5 text-emerald-500 mx-auto mb-1" />
-          <p className="text-xl font-bold text-gray-800">{facilities.length}</p>
-          <p className="text-xs text-gray-500">Total Facilities</p>
+      {/* Stats Overview - Responsive grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-5 md:mb-6">
+        <div className="bg-white rounded-lg sm:rounded-xl border border-gray-100 p-2 sm:p-3 text-center shadow-sm">
+          <Building2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 mx-auto mb-1" />
+          <p className="text-base sm:text-lg md:text-xl font-bold text-gray-800">{facilities.length}</p>
+          <p className="text-[10px] sm:text-xs text-gray-500">Total Facilities</p>
         </div>
-        <div className="bg-white rounded-xl border border-gray-100 p-3 text-center shadow-sm">
-          <MapPin className="w-5 h-5 text-emerald-500 mx-auto mb-1" />
-          <p className="text-xl font-bold text-gray-800">{uniqueRegions.length}</p>
-          <p className="text-xs text-gray-500">Regions</p>
+        <div className="bg-white rounded-lg sm:rounded-xl border border-gray-100 p-2 sm:p-3 text-center shadow-sm">
+          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 mx-auto mb-1" />
+          <p className="text-base sm:text-lg md:text-xl font-bold text-gray-800">{uniqueRegions.length}</p>
+          <p className="text-[10px] sm:text-xs text-gray-500">Regions</p>
         </div>
-        <div className="bg-white rounded-xl border border-gray-100 p-3 text-center shadow-sm">
-          <Users className="w-5 h-5 text-emerald-500 mx-auto mb-1" />
-          <p className="text-xl font-bold text-gray-800">{facilities.filter((f: any) => f.location).length}</p>
-          <p className="text-xs text-gray-500">Active Partners</p>
+        <div className="bg-white rounded-lg sm:rounded-xl border border-gray-100 p-2 sm:p-3 text-center shadow-sm">
+          <Users className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 mx-auto mb-1" />
+          <p className="text-base sm:text-lg md:text-xl font-bold text-gray-800">{facilities.filter((f: any) => f.location).length}</p>
+          <p className="text-[10px] sm:text-xs text-gray-500">Active Partners</p>
         </div>
-        <div className="bg-white rounded-xl border border-gray-100 p-3 text-center shadow-sm">
-          <Award className="w-5 h-5 text-emerald-500 mx-auto mb-1" />
-          <p className="text-xl font-bold text-gray-800">{shifts.length}</p>
-          <p className="text-xs text-gray-500">Total Shifts</p>
+        <div className="bg-white rounded-lg sm:rounded-xl border border-gray-100 p-2 sm:p-3 text-center shadow-sm">
+          <Award className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 mx-auto mb-1" />
+          <p className="text-base sm:text-lg md:text-xl font-bold text-gray-800">{shifts.length}</p>
+          <p className="text-[10px] sm:text-xs text-gray-500">Total Shifts</p>
         </div>
       </div>
 
       {/* Search and Filter Row */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
         <div className="relative flex-1">
-          <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <Search className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             placeholder="Search by name or location..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-sm"
+            className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-xs sm:text-sm"
           />
         </div>
         
@@ -115,10 +113,9 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
           <select
             value={selectedRegion}
             onChange={(e) => setSelectedRegion(e.target.value)}
-            className="px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-sm min-w-[130px]"
+            className="px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white text-xs sm:text-sm min-w-[120px] sm:min-w-[130px]"
           >
             <option value="">All Regions</option>
-            {/* ✅ FIXED: Removed the explicit type annotation - TypeScript now infers correctly */}
             {uniqueRegions.map((region) => (
               <option key={region} value={region}>{region}</option>
             ))}
@@ -126,17 +123,17 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
         )}
       </div>
 
-      {/* Facilities Grid */}
+      {/* Facilities Grid - Responsive: 1 col on mobile, 2 on tablet, 3 on desktop */}
       {filteredFacilities.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-xl border border-gray-100">
-          <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Building2 className="w-10 h-10 text-gray-400" />
+        <div className="text-center py-12 sm:py-16 bg-white rounded-lg sm:rounded-xl border border-gray-100">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <Building2 className="w-8 h-8 sm:w-10 sm:h-10 text-gray-400" />
           </div>
-          <h3 className="text-lg font-medium text-gray-800 mb-2">No facilities found</h3>
-          <p className="text-gray-500">Try adjusting your search or filter.</p>
+          <h3 className="text-base sm:text-lg font-medium text-gray-800 mb-1 sm:mb-2">No facilities found</h3>
+          <p className="text-xs sm:text-sm text-gray-500">Try adjusting your search or filter.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
           {filteredFacilities.map((facility: any) => {
             const rating = getFacilityRating(facility.id);
             const reviewCount = getReviewCount(facility.id);
@@ -145,38 +142,38 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
             return (
               <div
                 key={facility.id}
-                className="group bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-200 overflow-hidden hover:scale-[1.02]"
+                className="group bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-200 overflow-hidden hover:scale-[1.01] sm:hover:scale-[1.02]"
               >
-                <div className="h-1.5 bg-gradient-to-r from-emerald-500 to-teal-600"></div>
+                <div className="h-1 sm:h-1.5 bg-gradient-to-r from-emerald-500 to-teal-600"></div>
                 
-                <div className="p-5">
-                  <div className="flex justify-between items-start mb-3">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-800 text-lg group-hover:text-emerald-600 transition">
+                <div className="p-3 sm:p-4 md:p-5">
+                  <div className="flex justify-between items-start gap-2 mb-2 sm:mb-3">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-800 text-sm sm:text-base md:text-lg group-hover:text-emerald-600 transition truncate">
                         {facility.name}
                       </h3>
-                      <div className="flex items-center gap-2 mt-1">
+                      <div className="flex items-center gap-1 sm:gap-2 mt-1">
                         {renderStars(rating)}
-                        <span className="text-xs text-gray-500">({reviewCount} reviews)</span>
+                        <span className="text-[10px] sm:text-xs text-gray-500">({reviewCount} reviews)</span>
                       </div>
                     </div>
-                    <div className="bg-emerald-100 px-2.5 py-1 rounded-full">
-                      <span className="text-xs text-emerald-700 font-medium">Partner</span>
+                    <div className="bg-emerald-100 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full flex-shrink-0">
+                      <span className="text-[10px] sm:text-xs text-emerald-700 font-medium">Partner</span>
                     </div>
                   </div>
                   
-                  <div className="space-y-2 mt-3">
-                    <p className="text-sm text-gray-500 flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <span>{facility.location || 'Location not specified'}</span>
+                  <div className="space-y-1.5 sm:space-y-2 mt-2 sm:mt-3">
+                    <p className="text-xs sm:text-sm text-gray-500 flex items-center gap-1.5 sm:gap-2">
+                      <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
+                      <span className="truncate">{facility.location || 'Location not specified'}</span>
                     </p>
-                    <p className="text-sm text-gray-500 flex items-center gap-2">
-                      <Mail className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    <p className="text-xs sm:text-sm text-gray-500 flex items-center gap-1.5 sm:gap-2">
+                      <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                       <span className="truncate">{facility.email}</span>
                     </p>
                     {shiftCount > 0 && (
-                      <p className="text-sm text-gray-500 flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <p className="text-xs sm:text-sm text-gray-500 flex items-center gap-1.5 sm:gap-2">
+                        <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                         <span>{shiftCount} active {shiftCount === 1 ? 'shift' : 'shifts'}</span>
                       </p>
                     )}
@@ -184,7 +181,7 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
 
                   <button
                     onClick={() => handleViewDetails(facility)}
-                    className="mt-4 w-full py-2 text-sm font-medium text-emerald-600 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition opacity-100"
+                    className="mt-3 sm:mt-4 w-full py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-emerald-600 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition"
                   >
                     View Details
                   </button>
@@ -197,60 +194,60 @@ export default function FacilitiesView({ facilities, shifts = [] }: any) {
 
       {/* Footer note */}
       {filteredFacilities.length > 0 && (
-        <div className="mt-6 text-center text-xs text-gray-400">
+        <div className="mt-4 sm:mt-5 md:mt-6 text-center text-[10px] sm:text-xs text-gray-400">
           Showing {filteredFacilities.length} of {facilities.length} facilities
         </div>
       )}
 
-      {/* Facility Details Modal */}
+      {/* Facility Details Modal - Responsive */}
       {showModal && selectedFacility && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowModal(false)}>
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="sticky top-0 bg-white p-6 border-b border-gray-100 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-800">{selectedFacility.name}</h2>
-              <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-600">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowModal(false)}>
+          <div className="bg-white rounded-xl sm:rounded-2xl max-w-[95%] sm:max-w-lg md:max-w-2xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white p-3 sm:p-4 md:p-6 border-b border-gray-100 flex justify-between items-center">
+              <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 pr-2">{selectedFacility.name}</h2>
+              <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-600 flex-shrink-0">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4">
               <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-gray-400" />
-                <span className="text-gray-700">{selectedFacility.location || 'Location not specified'}</span>
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
+                <span className="text-xs sm:text-sm md:text-base text-gray-700 break-words">{selectedFacility.location || 'Location not specified'}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-gray-400" />
-                <a href={`mailto:${selectedFacility.email}`} className="text-emerald-600 hover:underline">
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
+                <a href={`mailto:${selectedFacility.email}`} className="text-emerald-600 hover:underline text-xs sm:text-sm md:text-base break-all">
                   {selectedFacility.email}
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-5 h-5 text-gray-400" />
-                <span className="text-gray-500">+254 700 000 000</span>
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
+                <span className="text-xs sm:text-sm md:text-base text-gray-500">+254 700 000 000</span>
               </div>
               <div className="flex items-center gap-2">
-                <Globe className="w-5 h-5 text-gray-400" />
-                <a href="#" className="text-emerald-600 hover:underline">www.{selectedFacility.name.toLowerCase().replace(/\s/g, '')}.com</a>
+                <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
+                <a href="#" className="text-emerald-600 hover:underline text-xs sm:text-sm md:text-base break-all">www.{selectedFacility.name.toLowerCase().replace(/\s/g, '')}.com</a>
               </div>
-              <div className="pt-4 border-t border-gray-100">
-                <h3 className="font-semibold text-gray-800 mb-2">About this facility</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="pt-3 sm:pt-4 border-t border-gray-100">
+                <h3 className="font-semibold text-gray-800 text-sm sm:text-base mb-1 sm:mb-2">About this facility</h3>
+                <p className="text-xs sm:text-sm text-gray-600">
                   {selectedFacility.name} is a leading healthcare facility in {selectedFacility.location}, 
                   providing quality medical services to the community. They are actively looking for 
                   qualified healthcare professionals to join their team.
                 </p>
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-3 pt-3 sm:pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-4">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-emerald-600">{getShiftCount(selectedFacility.id)}</p>
-                    <p className="text-xs text-gray-500">Active Shifts</p>
+                    <p className="text-lg sm:text-xl md:text-2xl font-bold text-emerald-600">{getShiftCount(selectedFacility.id)}</p>
+                    <p className="text-[10px] sm:text-xs text-gray-500">Active Shifts</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-emerald-600">{getReviewCount(selectedFacility.id)}</p>
-                    <p className="text-xs text-gray-500">Reviews</p>
+                    <p className="text-lg sm:text-xl md:text-2xl font-bold text-emerald-600">{getReviewCount(selectedFacility.id)}</p>
+                    <p className="text-[10px] sm:text-xs text-gray-500">Reviews</p>
                   </div>
                 </div>
-                <button className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700">
+                <button className="bg-emerald-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-emerald-700 text-xs sm:text-sm w-full sm:w-auto">
                   Contact Facility
                 </button>
               </div>
