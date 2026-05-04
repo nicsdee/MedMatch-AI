@@ -18,7 +18,6 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
   const profileMenuRef = useRef<HTMLDivElement>(null);
   const notificationsRef = useRef<HTMLDivElement>(null);
 
-  // Check if mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -28,7 +27,6 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
@@ -43,19 +41,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Get the title based on active page
-  const getTitle = () => {
-    switch (activeView) {
-      case 'dashboard': return 'Dashboard';
-      case 'shifts': return 'Open Shifts';
-      case 'matched': return 'Matched Shifts';
-      case 'providers': return 'Provider Network';
-      case 'facilities': return 'Partner Facilities';
-      default: return 'Dashboard';
-    }
-  };
-
-  // Company Name/subject to change
+  // Company Name
   const COMPANY_NAME = 'ShiftMed';
 
   // Sample notifications
@@ -72,7 +58,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-20">
       <div className="px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center">
         
-        {/* Left: Hamburger + Page Title (Desktop only) */}
+        {/* LEFT: Hamburger + Company Name/Logo */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Hamburger Button */}
           <button
@@ -83,30 +69,19 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
-          {/* Page Title - only show on desktop */}
-          {!isMobile && (
-            <div>
-              <h2 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
-                {getTitle()}
-              </h2>
+          {/* Company Logo + Name */}
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm">
+              <span className="text-white font-bold text-xs sm:text-sm">S</span>
             </div>
-          )}
+            <span className="font-bold text-gray-800 text-sm sm:text-base hidden sm:block">
+              {COMPANY_NAME}
+            </span>
+          </div>
         </div>
 
-        {/* Center: Company Name - only on mobile */}
-        {isMobile && (
-          <div className="absolute left-1/2 transform -translate-x-1/2">
-            <h1 className="font-bold text-base text-gray-800">{COMPANY_NAME}</h1>
-          </div>
-        )}
-
-        {/* Right: Company Name (Desktop) + Notifications + Profile */}
-        <div className="flex items-center gap-3 sm:gap-4">
-          {/* Company Name - Desktop only */}
-          {!isMobile && (
-            <h1 className="font-bold text-lg text-gray-800 hidden sm:block">{COMPANY_NAME}</h1>
-          )}
-
+        {/* RIGHT: Notifications + Profile */}
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* Notification Bell */}
           <div className="relative" ref={notificationsRef}>
             <button
@@ -122,7 +97,6 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
               )}
             </button>
 
-            {/* Notification Dropdown */}
             {showNotifications && (
               <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-30">
                 <div className="p-3 border-b border-gray-100 flex justify-between items-center">
@@ -153,7 +127,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
             )}
           </div>
 
-          {/* Profile Icon with Dropdown */}
+          {/* Profile Icon */}
           <div className="relative" ref={profileMenuRef}>
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
@@ -166,7 +140,6 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
               <span className="hidden sm:inline text-sm text-gray-700">Nicholas</span>
             </button>
 
-            {/* Profile Dropdown Menu */}
             {showProfileMenu && (
               <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-30">
                 <div className="p-3 border-b border-gray-100">
