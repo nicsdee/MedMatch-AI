@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Bell, User, LogOut, Settings, HelpCircle } from 'lucide-react';
+import { Menu, Bell, User, LogOut, Settings, HelpCircle } from 'lucide-react';
 
 interface NavbarProps {
   sidebarOpen: boolean;
@@ -42,7 +42,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
   }, []);
 
   // Company Name
-  const COMPANY_NAME = 'ShiftMed';
+  const COMPANY_NAME = 'FaproMedAI';
 
   // Sample notifications
   const notifications = [
@@ -58,21 +58,21 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-20">
       <div className="px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center">
         
-        {/* LEFT: Hamburger + Company Name/Logo */}
+        {/* LEFT: Hamburger (always 3 lines) + Company Name/Logo */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Hamburger Button */}
+          {/* Hamburger Button - ALWAYS shows 3 lines (Menu), never X */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600"
-            aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
+            aria-label="Menu"
           >
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <Menu className="w-5 h-5" />
           </button>
 
           {/* Company Logo + Name */}
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm">
-              <span className="text-white font-bold text-xs sm:text-sm">S</span>
+              <span className="text-white font-bold text-xs sm:text-sm">F</span>
             </div>
             <span className="font-bold text-gray-800 text-sm sm:text-base hidden sm:block">
               {COMPANY_NAME}
