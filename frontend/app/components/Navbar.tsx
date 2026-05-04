@@ -42,7 +42,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
   }, []);
 
   // Company Name
-  //const COMPANY_NAME = 'FaproMedAI';
+  const COMPANY_NAME = 'FaproMedAI';
 
   // Sample notifications
   const notifications = [
