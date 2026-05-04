@@ -70,12 +70,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
 
           {/* Company Logo + Name - Desktop only */}
           {!isMobile && (
-            <div className="flex items-center gap-2">
-             
-              <span className="font-bold text-gray-800 text-base hidden sm:block">
-                {COMPANY_NAME}
-              </span>
-            </div>
+           
           )}
         </div>
 
@@ -83,9 +78,6 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
         {isMobile && (
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md">
-              
-              </div>
               <span className="font-bold text-gray-800 text-2xl tracking-tight">
                 {COMPANY_NAME}
               </span>
