@@ -61,7 +61,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
         {/* LEFT: Hamburger (always 3 lines) + Company Name/Logo */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Hamburger Button - ALWAYS shows 3 lines (Menu), never X */}
-          // In the button, always show Menu, never X
+          
 <button
   onClick={() => setSidebarOpen(!sidebarOpen)}
   className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600"
