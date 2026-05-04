@@ -1,4 +1,4 @@
-#  MedMatchAI - Instant Intelligent Healthcare Staffing System 
+#  FaproMedAI - Instant Intelligent Healthcare Staffing System 
  
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green)](https://fastapi.tiangolo.com/) 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/) 
@@ -31,14 +31,14 @@
  
 | Environment | URL | Status | 
 |-------------|-----|--------| 
-| **Frontend Application** | https://medmatch-ai.vercel.app |  Live | 
+| **Frontend Application** | https://med-match-ai.vercel.app |  Live | 
 | **Backend API** | https://medmatch-api.onrender.com |  Live | 
 | **Interactive API Documentation** | https://medmatch-api.onrender.com/docs |  Live | 
 | **GitHub Repository** | https://github.com/nicsdee/MedMatch-AI |  Public | 
  
-##  About MedMatch AI 
+##  About FaproMed AI 
  
-MedMatch AI is a **production-ready, AI-powered healthcare staffing platform** that leverages Google's Gemini AI to intelligently match healthcare providers with facility shifts in real-time. This project was developed as a demonstration for the **ShiftNex AI Internship** position, showcasing my expertise in full-stack development, AI integration, database design, and cloud deployment. 
+FaproMed AI is a **production-ready, AI-powered healthcare staffing platform** that leverages Google's Gemini AI to intelligently match healthcare providers with facility shifts in real-time. This project was developed as a demonstration for the **ShiftNex AI Internship** position, showcasing my expertise in full-stack development, AI integration, database design, and cloud deployment. 
  
 ###  Why I Built This 
  
