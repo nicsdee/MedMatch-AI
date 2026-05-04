@@ -36,7 +36,7 @@
 | **Interactive API Documentation** | https://medmatch-api.onrender.com/docs |  Live | 
 | **GitHub Repository** | https://github.com/nicsdee/MedMatch-AI |  Public | 
  
-##  About MedMatch AI 
+##  About FaproMed AI 
  
 FaproMed AI is a **production-ready, AI-powered healthcare staffing platform** that leverages Google's Gemini AI to intelligently match healthcare providers with facility shifts in real-time. This project was developed as a demonstration for the **ShiftNex AI Internship** position, showcasing my expertise in full-stack development, AI integration, database design, and cloud deployment. 
  
