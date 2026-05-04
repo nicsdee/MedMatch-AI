@@ -86,7 +86,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md">
-                <span className="text-white font-bold text-2xl">F</span>
+              
               </div>
               <span className="font-bold text-gray-800 text-2xl tracking-tight">
                 {COMPANY_NAME}
