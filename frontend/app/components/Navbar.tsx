@@ -66,7 +66,12 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
             aria-label="Menu"
           >
             <Menu className="w-5 h-5" />
-          </button>         
+          </button>
+
+          {/* Company Logo + Name - Desktop only */}
+          {!isMobile && (
+           
+          )}
         </div>
 
         {/* CENTER: Big Company Logo on Mobile */}
