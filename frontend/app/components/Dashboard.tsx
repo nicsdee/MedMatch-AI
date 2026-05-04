@@ -86,7 +86,7 @@ export default function Dashboard({ providers, facilities, shifts, setActiveView
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs bg-white rounded-full px-2 sm:px-3 py-1 sm:py-1.5 shadow-sm border border-slate-200">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span className="text-slate-600">Live Data</span>
+          <span className="text-slate-600">Instant Matching</span>
         </div>
         <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs bg-white rounded-full px-2 sm:px-3 py-1 sm:py-1.5 shadow-sm border border-slate-200">
           <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-amber-500" />
@@ -369,7 +369,7 @@ export default function Dashboard({ providers, facilities, shifts, setActiveView
                 <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-slate-200 shadow-sm">
                   <div className="flex items-center gap-2 mb-2"><div className="p-1.5 sm:p-2 bg-purple-100 rounded-lg"><Activity className="w-4 h-4 sm:w-5 sm:h-5 text-purple-700" /></div><span className="text-sm sm:text-base font-bold text-slate-800">Real-time Sync</span></div>
                   <p className="text-xs sm:text-sm text-slate-600">Live availability tracking for instant matching.</p>
-                  <div className="mt-2 flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div><span className="text-[10px] sm:text-xs text-slate-500">Live data active</span></div>
+                  <div className="mt-2 flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div><span className="text-[10px] sm:text-xs text-slate-500">Instnt Matches</span></div>
                 </div>
                 <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-slate-200 shadow-sm">
                   <div className="flex items-center gap-2 mb-2"><div className="p-1.5 sm:p-2 bg-cyan-100 rounded-lg"><Gem className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-700" /></div><span className="text-sm sm:text-base font-bold text-slate-800">Quality First</span></div>
