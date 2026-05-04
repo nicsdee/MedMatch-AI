@@ -72,10 +72,7 @@ export default function Dashboard({ providers, facilities, shifts, setActiveView
         {/* Welcome Header */}
         <div className="mb-6 sm:mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">Dashboard</h1>
-              <p className="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">Instant Intelligent healthcare staffing platform</p>
-            </div>
+            
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs bg-white rounded-full px-2 sm:px-3 py-1 sm:py-1.5 shadow-sm border border-slate-200">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
