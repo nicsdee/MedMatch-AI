@@ -70,7 +70,11 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
 
           {/* Company Logo + Name - Desktop only */}
           {!isMobile && (
-           
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-gray-800 text-base hidden sm:block">
+                {COMPANY_NAME}
+              </span>
+            </div>
           )}
         </div>
 
