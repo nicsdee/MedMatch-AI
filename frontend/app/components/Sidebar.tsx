@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { LayoutDashboard, Calendar, Users, Building2, CheckCircle, PlusCircle } from 'lucide-react';
+import { LayoutDashboard, Calendar, Users, Building2, CheckCircle, PlusCircle, X, Menu } from 'lucide-react';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -21,8 +21,6 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, activeView, setAc
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      // On desktop, sidebar starts OPEN (full width)
-      // On mobile, sidebar starts CLOSED
       if (mobile) {
         setMobileSidebarOpen(false);
       }
@@ -79,12 +77,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, activeView, setAc
   };
 
   // For mobile: use mobileSidebarOpen state
-  // For desktop: use sidebarOpen prop (controls collapsed/expanded)
-  const isVisibleOnDesktop = !isMobile;
+  // For desktop: use sidebarOpen prop
   const isExpandedOnDesktop = sidebarOpen;
   
-  // Mobile: sidebar is either full width (w-64) or hidden (-translate-x-full)
-  // Desktop: sidebar is either full width (w-64) or collapsed to icons (w-16)
   const mobileClasses = isMobile 
     ? `${mobileSidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64'}`
     : `${isExpandedOnDesktop ? 'w-64' : 'w-16'} translate-x-0`;
@@ -177,7 +172,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, activeView, setAc
           </button>
         </div>
 
-        {/* Footer - only shows when expanded */}
+        {/* Footer */}
         {(isExpandedOnDesktop || isMobile) && (
           <div className="p-3 border-t border-gray-100">
             <div className="bg-gray-50 rounded-lg p-2 text-center">
