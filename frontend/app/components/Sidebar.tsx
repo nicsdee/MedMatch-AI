@@ -5,13 +5,14 @@ import { LayoutDashboard, Calendar, Users, Building2, CheckCircle, PlusCircle, M
 
 interface SidebarProps {
   sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
   activeView: string;
   setActiveView: (view: string) => void;
   setShowPostShiftModal?: (show: boolean) => void;
   setActiveViewWithPost?: (view: string, showPost: boolean) => void;
 }
 
-export default function Sidebar({ sidebarOpen, activeView, setActiveView, setShowPostShiftModal, setActiveViewWithPost }: SidebarProps) {
+export default function Sidebar({ sidebarOpen, setSidebarOpen, activeView, setActiveView, setShowPostShiftModal, setActiveViewWithPost }: SidebarProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
@@ -58,17 +59,12 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
   ];
 
   const handlePostNewShift = () => {
-    // First navigate to shifts view
     setActiveView('shifts');
-    
-    // Then trigger the post shift modal/form
     if (setShowPostShiftModal) {
       setShowPostShiftModal(true);
     } else if (setActiveViewWithPost) {
       setActiveViewWithPost('shifts', true);
     }
-    
-    // Close sidebar on mobile after action
     if (isMobile) {
       setMobileSidebarOpen(false);
     }
@@ -76,10 +72,14 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
 
   const handleMenuClick = (viewId: string) => {
     setActiveView(viewId);
-    // Close sidebar on mobile after selection
     if (isMobile) {
       setMobileSidebarOpen(false);
     }
+  };
+
+  // Toggle sidebar on desktop
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
 
   // Determine if sidebar should be visible
@@ -117,9 +117,21 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
           h-full shadow-xl md:shadow-none
         `}
       >
+        {/* Desktop Toggle Button - Always shows ☰ on desktop when collapsed, X when open */}
+        <div className="hidden md:flex justify-end p-2 border-b border-gray-100">
+          <button
+            onClick={toggleSidebar}
+            className="p-1.5 hover:bg-gray-100 rounded-lg transition text-gray-500"
+            title={sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
+          >
+            {/* Show ☰ when collapsed, X when open */}
+            {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          </button>
+        </div>
+
         {/* Logo */}
-        <div className="p-4 border-b border-gray-100">
-          <div className="flex items-center justify-center gap-2">
+        <div className={`py-4 ${sidebarOpen ? 'px-4' : 'px-2'} border-b border-gray-100`}>
+          <div className={`flex items-center ${sidebarOpen ? 'justify-start gap-2' : 'justify-center'}`}>
             <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0">
               <span className="text-white font-bold text-sm">M</span>
             </div>
@@ -133,7 +145,7 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
           {menuItems.map((item) => (
             <button
               key={item.id}
@@ -157,7 +169,7 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
         </nav>
 
         {/* Post New Shift Button */}
-        <div className="p-3 mb-2">
+        <div className={`p-2 mb-2 ${!sidebarOpen && !isMobile ? 'px-2' : 'px-3'}`}>
           <button
             onClick={handlePostNewShift}
             className={`

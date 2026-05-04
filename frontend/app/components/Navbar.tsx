@@ -55,17 +55,8 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
     }
   };
 
-  // Get the subtitle based on active page
-  const getSubtitle = () => {
-    switch (activeView) {
-      case 'dashboard': return 'Intelligent healthcare staffing platform';
-      case 'shifts': return `${shiftsCount} open shifts available`;
-      case 'matched': return 'Successfully matched shifts';
-      case 'providers': return 'Qualified healthcare professionals ready for placement';
-      case 'facilities': return 'Healthcare facilities in your network';
-      default: return 'Welcome to MedMatch AI';
-    }
-  };
+  // Company Name/subject to change
+  const COMPANY_NAME = 'ShiftMed';
 
   // Sample notifications
   const notifications = [
@@ -80,9 +71,10 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
   return (
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-20">
       <div className="px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center">
-        {/* Left side: Hamburger + Page Title */}
+        
+        {/* Left: Hamburger + Page Title (Desktop only) */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Hamburger Button - visible on mobile or when needed */}
+          {/* Hamburger Button */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600"
@@ -91,21 +83,30 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
-          {/* Page Title - responsive text sizes */}
-          <div>
-            <h2 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
-              {getTitle()}
-            </h2>
-            {!isMobile && (
-              <p className="text-xs text-gray-500 hidden sm:block">
-                {getSubtitle()}
-              </p>
-            )}
-          </div>
+          {/* Page Title - only show on desktop */}
+          {!isMobile && (
+            <div>
+              <h2 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
+                {getTitle()}
+              </h2>
+            </div>
+          )}
         </div>
-        
-        {/* Right side: Notification + Profile */}
-        <div className="flex items-center gap-1 sm:gap-2">
+
+        {/* Center: Company Name - only on mobile */}
+        {isMobile && (
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <h1 className="font-bold text-base text-gray-800">{COMPANY_NAME}</h1>
+          </div>
+        )}
+
+        {/* Right: Company Name (Desktop) + Notifications + Profile */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          {/* Company Name - Desktop only */}
+          {!isMobile && (
+            <h1 className="font-bold text-lg text-gray-800 hidden sm:block">{COMPANY_NAME}</h1>
+          )}
+
           {/* Notification Bell */}
           <div className="relative" ref={notificationsRef}>
             <button
