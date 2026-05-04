@@ -9,7 +9,9 @@ import {
   ChevronRight, Heart, Stethoscope
 } from 'lucide-react';
 
-const API_URL = 'http://localhost:8000';
+//const API_URL = 'http://localhost:8000';
+// ✅ GOOD - Uses environment variable for flexibility
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export default function MatchedShiftsView({ facilities }: any) {
   const [matchedShifts, setMatchedShifts] = useState<any[]>([]);

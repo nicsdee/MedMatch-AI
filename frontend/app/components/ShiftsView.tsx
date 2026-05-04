@@ -9,8 +9,8 @@ import {
   Target, Shield, Star, Tag, Plus
 } from 'lucide-react';
 
-const API_URL = 'http://localhost:8000';
-
+//const API_URL = 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 // Comprehensive healthcare skills database
 const HEALTHCARE_SKILLS = [
   'ventilator management', 'critical care', 'patient monitoring', 'trauma care', 
