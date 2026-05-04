@@ -33,17 +33,34 @@ export default function Home() {
   }, []);
 
   const fetchData = async () => {
+    // 🔍 DEBUG: Log what URL is being used
+    console.log('🔍 API_URL being used:', API_URL);
+    
     try {
+      console.log('📡 Fetching providers from:', `${API_URL}/providers`);
+      console.log('📡 Fetching facilities from:', `${API_URL}/facilities`);
+      console.log('📡 Fetching shifts from:', `${API_URL}/shifts/open`);
+      
       const [providersRes, facilitiesRes, shiftsRes] = await Promise.all([
         axios.get(`${API_URL}/providers`),
         axios.get(`${API_URL}/facilities`),
         axios.get(`${API_URL}/shifts/open`),
       ]);
+      
+      console.log('✅ Providers received:', providersRes.data.length);
+      console.log('✅ Facilities received:', facilitiesRes.data.length);
+      console.log('✅ Shifts received:', shiftsRes.data.length);
+      
       setProviders(providersRes.data);
       setFacilities(facilitiesRes.data);
       setShifts(shiftsRes.data);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('❌ Fetch error details:', error);
+      if (axios.isAxiosError(error)) {
+        console.error('❌ Response status:', error.response?.status);
+        console.error('❌ Response data:', error.response?.data);
+        console.error('❌ Request URL:', error.config?.url);
+      }
     } finally {
       setLoading(false);
     }
@@ -64,11 +81,9 @@ export default function Home() {
   const handleAcceptMatch = async (providerId: number) => {
     if (!selectedShift) return;
     try {
-      // ✅ FIXED: Use correct template literal syntax (single curly braces)
       const matchesResponse = await axios.get(`${API_URL}/matches/${selectedShift.id}`);
       const match = matchesResponse.data.find((m: any) => m.provider_id === providerId);
       if (match) {
-        // ✅ FIXED: Use correct template literal syntax
         await axios.put(`${API_URL}/matches/${match.id}/accept`);
         alert('✓ Provider assigned successfully');
         setShowMatchModal(false);
@@ -97,16 +112,13 @@ export default function Home() {
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
-      {/* Sidebar */}
       <Sidebar 
         sidebarOpen={sidebarOpen} 
         activeView={activeView} 
         setActiveView={setActiveView} 
       />
       
-      {/* Main Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Navbar */}
         <Navbar 
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
@@ -114,7 +126,6 @@ export default function Home() {
           shiftsCount={shifts.length}
         />
         
-        {/* Page Content */}
         <div className="flex-1 overflow-y-auto">
           {activeView === 'dashboard' && (
             <Dashboard 
@@ -147,7 +158,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Modals */}
       {showShiftModal && (
         <PostShiftModal 
           facilities={facilities} 
