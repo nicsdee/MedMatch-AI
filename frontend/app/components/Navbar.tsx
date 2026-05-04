@@ -58,28 +58,42 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-20">
       <div className="px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center">
         
-        {/* LEFT: Hamburger (always 3 lines) + Company Name/Logo */}
+        {/* LEFT: Hamburger (always 3 lines) */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Hamburger Button - ALWAYS shows 3 lines (Menu), never X */}
-          
-<button
-  onClick={() => setSidebarOpen(!sidebarOpen)}
-  className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600"
-  aria-label="Menu"
->
-  <Menu className="w-5 h-5" />  {/* Always Menu, never X */}
-</button>
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600"
+            aria-label="Menu"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
 
-          {/* Company Logo + Name */}
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm">
-              <span className="text-white font-bold text-xs sm:text-sm">F</span>
+          {/* Company Logo + Name - Desktop only */}
+          {!isMobile && (
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm">
+                <span className="text-white font-bold text-sm">F</span>
+              </div>
+              <span className="font-bold text-gray-800 text-base hidden sm:block">
+                {COMPANY_NAME}
+              </span>
             </div>
-            <span className="font-bold text-gray-800 text-sm sm:text-base hidden sm:block">
-              {COMPANY_NAME}
-            </span>
-          </div>
+          )}
         </div>
+
+        {/* CENTER: Big Company Logo on Mobile */}
+        {isMobile && (
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md">
+                <span className="text-white font-bold text-2xl">F</span>
+              </div>
+              <span className="font-bold text-gray-800 text-2xl tracking-tight">
+                {COMPANY_NAME}
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* RIGHT: Notifications + Profile */}
         <div className="flex items-center gap-1 sm:gap-2">
