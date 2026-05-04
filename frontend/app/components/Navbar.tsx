@@ -42,7 +42,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
   }, []);
 
   // Company Name
-  const COMPANY_NAME = 'FaproMedAI';
+  //const COMPANY_NAME = 'FaproMedAI';
 
   // Sample notifications
   const notifications = [
@@ -66,12 +66,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
             aria-label="Menu"
           >
             <Menu className="w-5 h-5" />
-          </button>
-
-          {/* Company Logo + Name - Desktop only */}
-          {!isMobile && (
-           
-          )}
+          </button>         
         </div>
 
         {/* CENTER: Big Company Logo on Mobile */}
