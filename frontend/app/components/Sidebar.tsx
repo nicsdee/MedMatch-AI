@@ -1,182 +1,180 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Bell, User, LogOut, Settings, HelpCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { LayoutDashboard, Calendar, Users, Building2, CheckCircle, PlusCircle } from 'lucide-react';
 
-interface NavbarProps {
+interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
   activeView: string;
-  shiftsCount?: number;
+  setActiveView: (view: string) => void;
+  setShowPostShiftModal?: (show: boolean) => void;
+  setActiveViewWithPost?: (view: string, showPost: boolean) => void;
 }
 
-export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shiftsCount = 0 }: NavbarProps) {
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
+export default function Sidebar({ sidebarOpen, setSidebarOpen, activeView, setActiveView, setShowPostShiftModal, setActiveViewWithPost }: SidebarProps) {
   const [isMobile, setIsMobile] = useState(false);
-  
-  const profileMenuRef = useRef<HTMLDivElement>(null);
-  const notificationsRef = useRef<HTMLDivElement>(null);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
+  // Check if mobile on mount and window resize
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      // Auto-close sidebar on mobile
+      if (mobile) {
+        setMobileSidebarOpen(false);
+      }
     };
+    
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Close sidebar when clicking outside on mobile
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
-        setShowProfileMenu(false);
-      }
-      if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node)) {
-        setShowNotifications(false);
+    if (!isMobile) return;
+    
+    const handleClickOutside = (e: MouseEvent) => {
+      const sidebar = document.getElementById('main-sidebar');
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      if (sidebar && !sidebar.contains(e.target as Node) && 
+          menuBtn && !menuBtn.contains(e.target as Node) && 
+          mobileSidebarOpen) {
+        setMobileSidebarOpen(false);
       }
     };
     
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [isMobile, mobileSidebarOpen]);
 
-  const COMPANY_NAME = 'ShiftMed';
-
-  const notifications = [
-    { id: 1, title: 'New shift posted', message: 'ICU Nurse needed at Kenyatta Hospital', time: '5 min ago', read: false },
-    { id: 2, title: 'Match found', message: 'Sarah Njuguna matched with ER shift', time: '1 hour ago', read: false },
-    { id: 3, title: 'Shift filled', message: 'Night shift at Aga Khan Hospital filled', time: '3 hours ago', read: true },
-    { id: 4, title: 'Provider available', message: 'James Otieno is now available', time: 'Yesterday', read: true },
+  const menuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'shifts', label: 'Open Shifts', icon: Calendar },
+    { id: 'matched', label: 'Matched Shifts', icon: CheckCircle },
+    { id: 'providers', label: 'Provider Network', icon: Users },
+    { id: 'facilities', label: 'Facilities', icon: Building2 },
   ];
 
-  const unreadCount = notifications.filter(n => !n.read).length;
+  const handlePostNewShift = () => {
+    setActiveView('shifts');
+    if (setShowPostShiftModal) {
+      setShowPostShiftModal(true);
+    } else if (setActiveViewWithPost) {
+      setActiveViewWithPost('shifts', true);
+    }
+    if (isMobile) {
+      setMobileSidebarOpen(false);
+    }
+  };
+
+  const handleMenuClick = (viewId: string) => {
+    setActiveView(viewId);
+    if (isMobile) {
+      setMobileSidebarOpen(false);
+    }
+  };
+
+  // Determine if sidebar should be visible
+  const isSidebarVisible = isMobile ? mobileSidebarOpen : sidebarOpen;
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-20">
-      <div className="px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center">
-        
-        {/* LEFT: Hamburger (ONLY HERE) + Logo (Desktop) */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Hamburger Button - ONLY HAMBURGER IN THE WHOLE APP */}
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600 z-50"
-            aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
-          >
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        id="mobile-menu-btn"
+        onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+        className="fixed top-4 left-4 z-50 p-2 bg-emerald-600 text-white rounded-lg shadow-lg md:hidden"
+      >
+        {mobileSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
 
-          {/* Logo with name - Desktop only */}
-          {!isMobile && (
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm">
-                <span className="text-white font-bold text-sm">S</span>
-              </div>
-              <span className="font-bold text-gray-800 text-lg">{COMPANY_NAME}</span>
+      {/* Overlay for mobile */}
+      {isMobile && mobileSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setMobileSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div
+        id="main-sidebar"
+        className={`
+          fixed md:sticky top-0 left-0 z-40
+          bg-white border-r border-gray-200
+          transition-all duration-300 ease-in-out
+          flex flex-col h-full shadow-xl md:shadow-none
+          ${isSidebarVisible ? 'translate-x-0' : '-translate-x-full'}
+          ${isMobile ? 'w-64' : (sidebarOpen ? 'w-64' : 'w-16')}
+        `}
+      >
+        {/* Logo */}
+        <div className={`py-6 ${sidebarOpen ? 'px-4' : 'px-2'} border-b border-gray-100`}>
+          <div className={`flex items-center ${sidebarOpen ? 'justify-start gap-3' : 'justify-center'}`}>
+            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+              <span className="text-white font-bold text-lg">F</span>
             </div>
-          )}
+            {sidebarOpen && (
+              <div>
+                <h1 className="font-bold text-gray-800 text-sm">FaproMedAI</h1>
+                <p className="text-xs text-gray-400">Healthcare Staffing</p>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* CENTER: Large Company Logo on Mobile */}
-        {isMobile && (
-          <div className="absolute left-1/2 transform -translate-x-1/2">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md">
-                <span className="text-white font-bold text-xl">S</span>
-              </div>
-              <span className="font-bold text-gray-800 text-xl tracking-tight">{COMPANY_NAME}</span>
+        {/* Navigation */}
+        <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleMenuClick(item.id)}
+              className={`
+                w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition 
+                ${activeView === item.id 
+                  ? 'bg-emerald-50 text-emerald-700' 
+                  : 'text-gray-600 hover:bg-gray-50'
+                }
+                ${!sidebarOpen ? 'justify-center' : ''}
+              `}
+              title={!sidebarOpen ? item.label : ''}
+            >
+              <item.icon className="w-5 h-5 flex-shrink-0" />
+              {sidebarOpen && <span className="text-sm font-medium">{item.label}</span>}
+            </button>
+          ))}
+        </nav>
+
+        {/* Post New Shift Button */}
+        <div className={`p-2 mb-2 ${!sidebarOpen ? 'px-2' : 'px-3'}`}>
+          <button
+            onClick={handlePostNewShift}
+            className={`
+              w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition 
+              bg-gradient-to-r from-emerald-600 to-teal-600 text-white 
+              hover:from-emerald-700 hover:to-teal-700 shadow-md
+              ${!sidebarOpen ? 'justify-center' : ''}
+            `}
+            title={!sidebarOpen ? 'Post New Shift' : ''}
+          >
+            <PlusCircle className="w-5 h-5 flex-shrink-0" />
+            {sidebarOpen && <span className="text-sm font-semibold">Post New Shift</span>}
+          </button>
+        </div>
+
+        {/* Footer */}
+        {sidebarOpen && (
+          <div className="p-3 border-t border-gray-100">
+            <div className="bg-gray-50 rounded-lg p-2 text-center">
+              <p className="text-xs text-gray-500">Ready to fill shifts?</p>
+              <p className="text-xs text-gray-400 mt-0.5">24/7 Support</p>
             </div>
           </div>
         )}
-
-        {/* RIGHT: Notifications + Profile */}
-        <div className="flex items-center gap-1 sm:gap-2">
-          {/* Notification Bell */}
-          <div className="relative" ref={notificationsRef}>
-            <button
-              onClick={() => setShowNotifications(!showNotifications)}
-              className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600 relative"
-              aria-label="Notifications"
-            >
-              <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
-              {unreadCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center px-1">
-                  {unreadCount > 9 ? '9+' : unreadCount}
-                </span>
-              )}
-            </button>
-
-            {showNotifications && (
-              <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-30">
-                <div className="p-3 border-b border-gray-100 flex justify-between items-center">
-                  <h3 className="font-semibold text-gray-800 text-sm sm:text-base">Notifications</h3>
-                  <button className="text-xs text-emerald-600 hover:underline">Mark all read</button>
-                </div>
-                <div className="max-h-80 sm:max-h-96 overflow-y-auto">
-                  {notifications.map((notif) => (
-                    <div 
-                      key={notif.id} 
-                      className={`p-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition ${!notif.read ? 'bg-emerald-50' : ''}`}
-                    >
-                      <div className="flex justify-between items-start gap-2">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-800">{notif.title}</p>
-                          <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">{notif.message}</p>
-                          <p className="text-xs text-gray-400 mt-1">{notif.time}</p>
-                        </div>
-                        {!notif.read && <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0 mt-1"></div>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="p-3 border-t border-gray-100 text-center">
-                  <button className="text-xs text-emerald-600 hover:underline">View all notifications</button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Profile Icon */}
-          <div className="relative" ref={profileMenuRef}>
-            <button
-              onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center gap-1 sm:gap-2 p-1 hover:bg-gray-100 rounded-lg transition"
-              aria-label="Profile menu"
-            >
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-full flex items-center justify-center text-white font-medium text-xs sm:text-sm">
-                NK
-              </div>
-              <span className="hidden sm:inline text-sm text-gray-700">Nicholas</span>
-            </button>
-
-            {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-30">
-                <div className="p-3 border-b border-gray-100">
-                  <p className="font-medium text-gray-800 text-sm">Nicholas Kioko</p>
-                  <p className="text-xs text-gray-500 truncate">nicsdavid@gmail.com</p>
-                </div>
-                <div className="py-1">
-                  <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition">
-                    <User className="w-4 h-4" /> My Profile
-                  </button>
-                  <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition">
-                    <Settings className="w-4 h-4" /> Settings
-                  </button>
-                  <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition">
-                    <HelpCircle className="w-4 h-4" /> Help Center
-                  </button>
-                </div>
-                <div className="border-t border-gray-100 py-1">
-                  <button className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-50 flex items-center gap-2 transition">
-                    <LogOut className="w-4 h-4" /> Logout
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
       </div>
-    </header>
+    </>
   );
 }
