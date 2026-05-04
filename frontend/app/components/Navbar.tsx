@@ -71,9 +71,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
           {/* Company Logo + Name - Desktop only */}
           {!isMobile && (
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm">
-                <span className="text-white font-bold text-sm">F</span>
-              </div>
+             
               <span className="font-bold text-gray-800 text-base hidden sm:block">
                 {COMPANY_NAME}
               </span>
