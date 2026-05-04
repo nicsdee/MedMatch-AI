@@ -5,13 +5,14 @@ import { LayoutDashboard, Calendar, Users, Building2, CheckCircle, PlusCircle, M
 
 interface SidebarProps {
   sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;  // ← ADD THIS (missing)
   activeView: string;
   setActiveView: (view: string) => void;
   setShowPostShiftModal?: (show: boolean) => void;
   setActiveViewWithPost?: (view: string, showPost: boolean) => void;
 }
 
-export default function Sidebar({ sidebarOpen, activeView, setActiveView, setShowPostShiftModal, setActiveViewWithPost }: SidebarProps) {
+export default function Sidebar({ sidebarOpen, setSidebarOpen, activeView, setActiveView, setShowPostShiftModal, setActiveViewWithPost }: SidebarProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
@@ -20,16 +21,19 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      // Auto-close sidebar on mobile
+      // On desktop, sidebar starts OPEN (true)
+      // On mobile, sidebar starts CLOSED
       if (mobile) {
         setMobileSidebarOpen(false);
+      } else {
+        setSidebarOpen(true);  // Desktop starts expanded
       }
     };
     
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [setSidebarOpen]);
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
@@ -58,17 +62,12 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
   ];
 
   const handlePostNewShift = () => {
-    // First navigate to shifts view
     setActiveView('shifts');
-    
-    // Then trigger the post shift modal/form
     if (setShowPostShiftModal) {
       setShowPostShiftModal(true);
     } else if (setActiveViewWithPost) {
       setActiveViewWithPost('shifts', true);
     }
-    
-    // Close sidebar on mobile after action
     if (isMobile) {
       setMobileSidebarOpen(false);
     }
@@ -76,14 +75,15 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
 
   const handleMenuClick = (viewId: string) => {
     setActiveView(viewId);
-    // Close sidebar on mobile after selection
     if (isMobile) {
       setMobileSidebarOpen(false);
     }
   };
 
-  // Determine if sidebar should be visible
-  const isSidebarVisible = isMobile ? mobileSidebarOpen : sidebarOpen;
+  // For desktop: when sidebarOpen = true → w-64 (full with text)
+  //              when sidebarOpen = false → w-16 (collapsed, icons only)
+  // For mobile: when mobileSidebarOpen = true → w-64 (visible)
+  //              when mobileSidebarOpen = false → hidden
 
   return (
     <>
@@ -111,21 +111,22 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
           fixed md:sticky top-0 left-0 z-40
           bg-white border-r border-gray-200
           transition-all duration-300 ease-in-out
-          flex flex-col
-          ${isSidebarVisible ? 'translate-x-0' : '-translate-x-full'}
-          ${isMobile ? 'w-64' : (sidebarOpen ? 'w-64' : 'w-16')}
-          h-full shadow-xl md:shadow-none
+          flex flex-col h-full shadow-xl md:shadow-none
+          ${isMobile 
+            ? `${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'} w-64`
+            : `translate-x-0 ${sidebarOpen ? 'w-64' : 'w-16'}`
+          }
         `}
       >
         {/* Logo */}
-        <div className="p-4 border-b border-gray-100">
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0">
-              <span className="text-white font-bold text-sm">M</span>
+        <div className={`py-6 ${sidebarOpen || isMobile ? 'px-4' : 'px-2'} border-b border-gray-100`}>
+          <div className={`flex items-center ${sidebarOpen || isMobile ? 'justify-start gap-3' : 'justify-center'}`}>
+            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+              <span className="text-white font-bold text-lg">F</span>
             </div>
-            {(isSidebarVisible && (isMobile || sidebarOpen)) && (
-              <div className="flex-1">
-                <h1 className="font-bold text-gray-800 text-sm">MedMatch AI</h1>
+            {(sidebarOpen || isMobile) && (
+              <div>
+                <h1 className="font-bold text-gray-800 text-sm">FaproMedAI</h1>
                 <p className="text-xs text-gray-400">Healthcare Staffing</p>
               </div>
             )}
@@ -133,7 +134,7 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
           {menuItems.map((item) => (
             <button
               key={item.id}
@@ -144,12 +145,12 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
                   ? 'bg-emerald-50 text-emerald-700' 
                   : 'text-gray-600 hover:bg-gray-50'
                 }
-                ${(!isSidebarVisible || (!isMobile && !sidebarOpen)) ? 'justify-center' : ''}
+                ${(!sidebarOpen && !isMobile) ? 'justify-center' : ''}
               `}
-              title={(!isSidebarVisible || (!isMobile && !sidebarOpen)) ? item.label : ''}
+              title={(!sidebarOpen && !isMobile) ? item.label : ''}
             >
               <item.icon className="w-5 h-5 flex-shrink-0" />
-              {(isSidebarVisible && (isMobile || sidebarOpen)) && (
+              {(sidebarOpen || isMobile) && (
                 <span className="text-sm font-medium">{item.label}</span>
               )}
             </button>
@@ -157,26 +158,26 @@ export default function Sidebar({ sidebarOpen, activeView, setActiveView, setSho
         </nav>
 
         {/* Post New Shift Button */}
-        <div className="p-3 mb-2">
+        <div className={`p-2 mb-2 ${(!sidebarOpen && !isMobile) ? 'px-2' : 'px-3'}`}>
           <button
             onClick={handlePostNewShift}
             className={`
               w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition 
               bg-gradient-to-r from-emerald-600 to-teal-600 text-white 
               hover:from-emerald-700 hover:to-teal-700 shadow-md
-              ${(!isSidebarVisible || (!isMobile && !sidebarOpen)) ? 'justify-center' : ''}
+              ${(!sidebarOpen && !isMobile) ? 'justify-center' : ''}
             `}
-            title={(!isSidebarVisible || (!isMobile && !sidebarOpen)) ? 'Post New Shift' : ''}
+            title={(!sidebarOpen && !isMobile) ? 'Post New Shift' : ''}
           >
             <PlusCircle className="w-5 h-5 flex-shrink-0" />
-            {(isSidebarVisible && (isMobile || sidebarOpen)) && (
+            {(sidebarOpen || isMobile) && (
               <span className="text-sm font-semibold">Post New Shift</span>
             )}
           </button>
         </div>
 
-        {/* Footer */}
-        {(isSidebarVisible && (isMobile || sidebarOpen)) && (
+        {/* Footer - only shows when expanded */}
+        {(sidebarOpen || isMobile) && (
           <div className="p-3 border-t border-gray-100">
             <div className="bg-gray-50 rounded-lg p-2 text-center">
               <p className="text-xs text-gray-500">Ready to fill shifts?</p>
