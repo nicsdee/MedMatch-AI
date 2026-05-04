@@ -44,7 +44,6 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
   // Company Name
   const COMPANY_NAME = 'ShiftMed';
 
-  // Sample notifications
   const notifications = [
     { id: 1, title: 'New shift posted', message: 'ICU Nurse needed at Kenyatta Hospital', time: '5 min ago', read: false },
     { id: 2, title: 'Match found', message: 'Sarah Njuguna matched with ER shift', time: '1 hour ago', read: false },
@@ -58,27 +57,39 @@ export default function Navbar({ sidebarOpen, setSidebarOpen, activeView, shifts
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-20">
       <div className="px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center">
         
-        {/* LEFT: Hamburger + Company Name/Logo */}
+        {/* LEFT: Hamburger + Logo (Desktop) / Only Hamburger (Mobile) */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Hamburger Button */}
+          {/* Hamburger Button - ONLY HERE */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600"
+            className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition text-gray-600 z-50"
             aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
           >
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
-          {/* Company Logo + Name */}
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm">
-              <span className="text-white font-bold text-xs sm:text-sm">S</span>
+          {/* Logo with name - Desktop only */}
+          {!isMobile && (
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-sm">
+                <span className="text-white font-bold text-sm">S</span>
+              </div>
+              <span className="font-bold text-gray-800 text-lg">{COMPANY_NAME}</span>
             </div>
-            <span className="font-bold text-gray-800 text-sm sm:text-base hidden sm:block">
-              {COMPANY_NAME}
-            </span>
-          </div>
+          )}
         </div>
+
+        {/* CENTER: Large Company Logo on Mobile */}
+        {isMobile && (
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md">
+                <span className="text-white font-bold text-xl">S</span>
+              </div>
+              <span className="font-bold text-gray-800 text-xl tracking-tight">{COMPANY_NAME}</span>
+            </div>
+          </div>
+        )}
 
         {/* RIGHT: Notifications + Profile */}
         <div className="flex items-center gap-1 sm:gap-2">
