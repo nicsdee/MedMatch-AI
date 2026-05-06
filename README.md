@@ -32,8 +32,8 @@
 | Environment | URL | Status | 
 |-------------|-----|--------| 
 | **Frontend Application** | https://med-match-ai.vercel.app |  Live | 
-| **Backend API** | https://medmatch-api.onrender.com |  Live | 
-| **Interactive API Documentation** | https://medmatch-api.onrender.com/docs |  Live | 
+| **Backend API** | https://medmatch-ai.onrender.com |  Live | 
+| **Interactive API Documentation** | https://medmatch-ai.onrender.com/docs |  Live | 
 | **GitHub Repository** | https://github.com/nicsdee/MedMatch-AI |  Public | 
  
 ##  About FaproMed AI 
